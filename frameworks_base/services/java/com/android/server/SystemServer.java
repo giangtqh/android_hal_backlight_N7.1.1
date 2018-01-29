@@ -58,6 +58,7 @@ import com.android.internal.widget.ILockSettings;
 import com.android.server.accessibility.AccessibilityManagerService;
 import com.android.server.am.ActivityManagerService;
 import com.android.server.audio.AudioService;
+import com.android.server.backlight.BacklightService;
 import com.android.server.camera.CameraService;
 import com.android.server.clipboard.ClipboardService;
 import com.android.server.connectivity.IpConnectivityMetrics;
@@ -899,6 +900,7 @@ public final class SystemServer {
             networkPolicy.bindNotificationManager(notification);
 
             mSystemServiceManager.startService(DeviceStorageMonitorService.class);
+            mSystemServiceManager.startService(BacklightService.class);
 
             if (!disableLocation) {
                 traceBeginAndSlog("StartLocationManagerService");

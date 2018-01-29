@@ -31,6 +31,8 @@ import android.app.usage.IUsageStatsManager;
 import android.app.usage.NetworkStatsManager;
 import android.app.usage.UsageStatsManager;
 import android.appwidget.AppWidgetManager;
+import android.backlight.BacklightManager;
+import android.backlight.IBacklightService;
 import android.bluetooth.BluetoothManager;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -775,6 +777,22 @@ final class SystemServiceRegistry {
                 return new ContextHubManager(ctx.getOuterContext(),
                   ctx.mMainThread.getHandler().getLooper());
             }});
+        registerService(Context.BACKLIGHT_SERVICE, BacklightManager.class,
+            new CachedServiceFetcher<BacklightManager>() {
+                @Override
+                public BacklightManager createService(ContextImpl ctx) {
+                    IBinder b = ServiceManager.getService(Context.BACKLIGHT_SERVICE);
+                    IBacklightService service = IBacklightService.Stub.asInterface(b);
+
+                    if (service == null) {
+                        Log.wtf(TAG, "Failed to get IBacklightService service.");
+
+                        return null;
+                    }
+
+                    return new BacklightManager(ctx, service);
+                }
+            });
     }
 
     /**

@@ -3656,6 +3656,13 @@ public abstract class Context {
     public static final String GATEKEEPER_SERVICE = "android.service.gatekeeper.IGateKeeperService";
 
     /**
+     * Use with {@link #getSystemService} to retrieve a {@link
+     * android.backlight.BacklightManager} instance
+     * @see #getSystemService
+     */
+    public static final String BACKLIGHT_SERVICE = "backlight_service";
+
+    /**
      * Determine whether the given permission is allowed for a particular
      * process and user ID running in the system.
      *

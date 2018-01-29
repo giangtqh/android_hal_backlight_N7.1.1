@@ -23,6 +23,7 @@ LOCAL_SRC_FILES += \
     $(LOCAL_REL_DIR)/com_android_server_input_InputManagerService.cpp \
     $(LOCAL_REL_DIR)/com_android_server_input_InputWindowHandle.cpp \
     $(LOCAL_REL_DIR)/com_android_server_lights_LightsService.cpp \
+    $(LOCAL_REL_DIR)/com_android_server_backlightService.cpp \
     $(LOCAL_REL_DIR)/com_android_server_location_GnssLocationProvider.cpp \
     $(LOCAL_REL_DIR)/com_android_server_location_FlpHardwareProvider.cpp \
     $(LOCAL_REL_DIR)/com_android_server_power_PowerManagerService.cpp \
@@ -50,6 +51,7 @@ LOCAL_C_INCLUDES += \
     system/security/keystore/include \
     $(call include-path-for, libhardware)/hardware \
     $(call include-path-for, libhardware_legacy)/hardware_legacy \
+    hardware/backlight \
 
 LOCAL_SHARED_LIBRARIES += \
     libandroid_runtime \
