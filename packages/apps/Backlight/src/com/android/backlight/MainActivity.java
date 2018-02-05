@@ -19,7 +19,7 @@ import android.backlight.BacklightManager;
 
 public class MainActivity extends Activity {
     private Context mContext;
-    private static final String TAG = "Backlight";
+    private static final String TAG = "BacklightApp";
     private RelativeLayout mRelativeLayout;
     private SeekBar mSeekBar;
     private TextView mTextView;
@@ -35,30 +35,26 @@ public class MainActivity extends Activity {
         // Get the application context
         mContext = getApplicationContext();
 
-        // Change the action bar color
-//        getSupportActionBar().setBackgroundDrawable(
-//                new ColorDrawable(Color.parseColor("#FF246AB4"))
-//        );
-
         // Get the widgets reference from XML layout
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
         mSeekBar = (SeekBar) findViewById(R.id.seek_bar);
         mTextView = (TextView) findViewById(R.id.tv);
-//        final IBacklightService bl = IBacklightService.Stub.asInterface(ServiceManager.getService("backlight"));
-        blManager = (BacklightManager)getSystemService(Context.BACKLIGHT_SERVICE);
+
+        blManager = (BacklightManager)mContext.getSystemService(Context.BACKLIGHT_SERVICE);
         try {
             // Set the SeekBar initial progress from screen current brightness
             //int brightness = getScreenBrightness();
             int brightness = blManager.getBrightness(); // use our definition
             mSeekBar.setProgress(brightness);
-            mTextView.setText("Screen Brightness : " + brightness);
+            mTextView.setText((brightness * 100/255) + "%");
 
             // Set a SeekBar change listener
             mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                     // Display the current progress of SeekBar
-                    mTextView.setText("Screen Brightness : " + i);
+                    //mTextView.setText("Screen Brightness : " + i);
+                    mTextView.setText((i * 100/255) + "%");
 
                     // Change the screen brightness
                     //setScreenBrightness(i);

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RBVH Team Demo</string>
+    <string name="blcontrol">Backlight Control</string>
 </resources>

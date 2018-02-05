@@ -1,6 +1,6 @@
 #define LOG_TAG "backlight"
 
-#include "backlight.h"
+#include <hardware/backlight.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <stdlib.h>
